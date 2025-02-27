@@ -32,7 +32,7 @@ jobs:
         run: python tweet_weather.py
 
       - name: Upload logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: weather-logs
           path: weather_tweet.log
