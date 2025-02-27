@@ -42,7 +42,7 @@ def tweet_temperature(temperature):
     except Exception as e:
         logging.error(f"Error tweeting: {e}")
 
-tweet_temperature("30")
+tweet_temperature("40")
 
 
 
