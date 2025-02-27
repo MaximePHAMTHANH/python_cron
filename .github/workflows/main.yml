@@ -2,7 +2,7 @@ name: Tweet Paris Temperature
 
 on:
   schedule:
-    - cron: '* * * * *'  # Runs every hour
+    - cron: '*/1 * * * *'  # Runs every hour
 
   workflow_dispatch:  # Allows manual trigger from GitHub Actions
 
