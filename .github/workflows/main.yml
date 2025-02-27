@@ -1,0 +1,38 @@
+name: Tweet Paris Temperature
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Runs every hour
+
+  workflow_dispatch:  # Allows manual trigger from GitHub Actions
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests tweepy
+
+      - name: Run script
+        env:
+          API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+        run: python tweet_weather.py
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: weather-logs
+          path: weather_tweet.log
