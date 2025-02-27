@@ -30,3 +30,9 @@ jobs:
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
         run: python tweet_weather.py
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: weather-logs
+          path: weather_tweet.log
